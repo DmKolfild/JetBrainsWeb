@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -25,6 +26,7 @@ public class CLionTest extends BaseTest {
     public void setUp() {
         super.setUp();
         open("https://www.jetbrains.com/clion/");
+        getWebDriver().manage().window().maximize();
         cLionPage = page();
         cLionDownloadPage = page();
         cLionPage.clickAcceptAllFromCookiesForm();

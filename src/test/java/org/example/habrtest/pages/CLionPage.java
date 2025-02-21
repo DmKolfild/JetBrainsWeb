@@ -1,14 +1,17 @@
 package org.example.habrtest.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.UIAssertionError;
 import org.example.habrtest.AllureLogger;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 //page url = https://www.jetbrains.com/clion/
@@ -65,10 +68,11 @@ public class CLionPage {
     }
 
     public void clickAcceptAllFromCookiesForm() {
-        if (acceptAllFromCookiesForm.isDisplayed()) {
+        try {
+            acceptAllFromCookiesForm.shouldNotBe(visible, Duration.ofSeconds(5));
             LOG.info("Кликнуть 'Принять куки'");
             acceptAllFromCookiesForm.click();
-        } else {
+        } catch (UIAssertionError e) {
             LOG.info("Окно с куками не отобразилось");
         }
     }
@@ -132,5 +136,6 @@ public class CLionPage {
                 break;
             }
         }
+        $(languageButtonInTheFooter).shouldBe(visible, Duration.ofSeconds(5));
     }
 }
