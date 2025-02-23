@@ -57,7 +57,6 @@ public class CLionTest extends BaseTest {
     @Test
     @DisplayName("Активна кнопка 'what's new'")
     public void whatIsNewButtonCheck() {
-        // assertTrue(cLionPage.checkIfWhatIsNewButtonClickable(), "Кнопка 'what's new' не активна");
         cLionPage.checkIfWhatIsNewButtonClickable();
     }
 
@@ -87,7 +86,8 @@ public class CLionTest extends BaseTest {
         TimeUnit.MINUTES.sleep(2);
         refresh();
         String answerAfterEnteringEmail = cLionPage.getAnswerAfterEnteringValidEmail(email);
-        assertEquals("Thanks for your request!", answerAfterEnteringEmail, "Ooopps, something is wrong (I didn't get the right answer)");
+        assertEquals("Thanks for your request!", answerAfterEnteringEmail,
+                "Ooopps, something is wrong (I didn't get the right answer)");
     }
 
     @Disabled("Поле с email убрано со страницы https://www.jetbrains.com/clion/")
@@ -99,7 +99,8 @@ public class CLionTest extends BaseTest {
         clearBrowserCookies();
         refresh();
         String answerAfterEnteringEmail = cLionPage.getAnswerAfterEnteringValidEmail(email);
-        assertEquals("Thanks for your request!", answerAfterEnteringEmail, "Ooopps, something is wrong (I didn't get the right answer)");
+        assertEquals("Thanks for your request!", answerAfterEnteringEmail,
+                "Ooopps, something is wrong (I didn't get the right answer)");
     }
 
     @Disabled("Поле с email убрано со страницы https://www.jetbrains.com/clion/")
@@ -118,7 +119,8 @@ public class CLionTest extends BaseTest {
     @DisplayName("Ввод невалидного email")
     public void enterInvalidEmail(String email) {
         String warningAnswer = cLionPage.getWarningAfterEnteringInvalidEmail(email);
-        assertEquals("Please enter a valid email address.", warningAnswer, "Текст сообщения некорректен");
+        assertEquals("Please enter a valid email address.", warningAnswer,
+                "Текст сообщения некорректен");
     }
 
     @Test
@@ -127,7 +129,8 @@ public class CLionTest extends BaseTest {
         String language = "Русский";
         cLionPage.changeLanguage(language);
         String urlPage = webdriver().driver().getCurrentFrameUrl();
-        assertEquals("https://www.jetbrains.com/ru-ru/clion/", urlPage, "Открыта страница не с русским языком");
+        assertEquals("https://www.jetbrains.com/ru-ru/clion/", urlPage,
+                "Открыта страница не с русским языком");
     }
 
     @Disabled("Раздел убран")
@@ -135,7 +138,8 @@ public class CLionTest extends BaseTest {
     @DisplayName("В разделе 'Code analysis on the fly' есть три фото")
     public void checkScreenshotFromCodeAnalysisSection() {
         int countOfScreenshot = cLionPage.getCountOfScreenshotsInCodeAnalysisSection();
-        assertEquals(3, countOfScreenshot, "Колиечество скриншотов для в разделе 'Code analysis on the fly' не равно 3");
+        assertEquals(3, countOfScreenshot,
+                "Колиечество скриншотов для в разделе 'Code analysis on the fly' не равно 3");
     }
 
     @Test
